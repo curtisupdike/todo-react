@@ -9,3 +9,9 @@ export const removeTodo = (text) => ({
   type: REMOVE_TODO,
   text,
 });
+
+export const TOGGLE_TODO = "TOGGLE_TODO";
+export const toggleTodo = (text) => ({
+  type: TOGGLE_TODO,
+  text,
+});

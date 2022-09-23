@@ -5,7 +5,7 @@ import {
   BiCheckSquare as CheckedIcon,
   BiSquare as UncheckedIcon,
 } from "react-icons/bi";
-import { removeTodo } from "./todoActions";
+import { removeTodo, toggleTodo } from "./todoActions";
 
 import IconButton from "../components/IconButton";
 
@@ -41,13 +41,20 @@ const RemoveButton = styled(IconButton)`
 const TodoListItem = ({ todo }) => {
   const dispatch = useDispatch();
 
+  function handleCompletedButtonClick() {
+    dispatch(toggleTodo(todo.text));
+  }
+
   function handleRemoveButtonClick() {
     dispatch(removeTodo(todo.text));
   }
 
   return (
     <Container>
-      <CompletedButton ariaLabel="Mark to-do as completed">
+      <CompletedButton
+        ariaLabel="Mark to-do as completed"
+        onClick={handleCompletedButtonClick}
+      >
         {todo.isCompleted ? <CheckedIcon /> : <UncheckedIcon />}
       </CompletedButton>
       <TodoText>{todo.text}</TodoText>
