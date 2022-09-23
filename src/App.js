@@ -1,15 +1,28 @@
 import styled from "styled-components";
 
+import TodoList from "./todos/TodoList";
+
 const Container = styled.div`
-  margin: 1rem;
-  color: #222222;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  max-width: 700px;
+  margin: 0 auto;
+  border: var(--border);
+  border-radius: var(--border-radius);
+`;
+
+const Title = styled.h1`
+  margin: 0;
+  padding: 0.75rem 1.25rem;
+  border-bottom: var(--border);
+  background-color: rgba(0, 0, 0, 0.03);
+  font-size: 2rem;
+  text-align: center;
 `;
 
 const App = () => (
   <Container>
-    <h1>Hello, World!!!!</h1>
+    <Title>To-do List</Title>
+    <TodoList />
   </Container>
 );
 
