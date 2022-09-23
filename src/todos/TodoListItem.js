@@ -1,9 +1,11 @@
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import {
   BiTrash as TrashIcon,
   BiCheckSquare as CheckedIcon,
   BiSquare as UncheckedIcon,
 } from "react-icons/bi";
+import { removeTodo } from "./todoActions";
 
 import IconButton from "../components/IconButton";
 
@@ -36,16 +38,24 @@ const RemoveButton = styled(IconButton)`
   background-color: #dc3545;
 `;
 
-const TodoListItem = ({ todo }) => (
-  <Container>
-    <CompletedButton ariaLabel="Mark to-do as completed">
-      {todo.isCompleted ? <CheckedIcon /> : <UncheckedIcon />}
-    </CompletedButton>
-    <TodoText>{todo.text}</TodoText>
-    <RemoveButton ariaLabel="Delete to-do">
-      <TrashIcon />
-    </RemoveButton>
-  </Container>
-);
+const TodoListItem = ({ todo }) => {
+  const dispatch = useDispatch();
+
+  function handleRemoveButtonClick() {
+    dispatch(removeTodo(todo.text));
+  }
+
+  return (
+    <Container>
+      <CompletedButton ariaLabel="Mark to-do as completed">
+        {todo.isCompleted ? <CheckedIcon /> : <UncheckedIcon />}
+      </CompletedButton>
+      <TodoText>{todo.text}</TodoText>
+      <RemoveButton ariaLabel="Delete to-do" onClick={handleRemoveButtonClick}>
+        <TrashIcon />
+      </RemoveButton>
+    </Container>
+  );
+};
 
 export default TodoListItem;
