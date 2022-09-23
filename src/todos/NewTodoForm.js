@@ -41,7 +41,7 @@ const NewTodoForm = ({ setTodos }) => {
         placeholder="New todo"
         onChange={(e) => setInput(e.target.value)}
       />
-      <SubmitButton>
+      <SubmitButton ariaLabel="Add to-do">
         <PlusIcon />
       </SubmitButton>
     </Form>

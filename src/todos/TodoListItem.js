@@ -38,11 +38,11 @@ const RemoveButton = styled(IconButton)`
 
 const TodoListItem = ({ todo }) => (
   <Container>
-    <CompletedButton>
+    <CompletedButton ariaLabel="Mark to-do as completed">
       {todo.isCompleted ? <CheckedIcon /> : <UncheckedIcon />}
     </CompletedButton>
     <TodoText>{todo.text}</TodoText>
-    <RemoveButton>
+    <RemoveButton ariaLabel="Delete to-do">
       <TrashIcon />
     </RemoveButton>
   </Container>
