@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import NewTodoForm from "./NewTodoForm";
@@ -13,22 +13,27 @@ const List = styled.ul`
   padding: 0;
 `;
 
-const mockTodos = [
-  { text: "Test One", isCompleted: true },
-  { text: "Test Two", isCompleted: false },
-];
+const EmptyMessage = styled.p`
+  text-align: center;
+  margin: 1.25rem 0 0 0;
+  padding: 1rem 0;
+`;
 
 const TodoList = () => {
-  const [todos, setTodos] = useState(mockTodos);
+  const todos = useSelector((state) => state);
 
   return (
     <Container>
-      <NewTodoForm setTodos={setTodos} />
-      <List>
-        {todos.map((todo, i) => (
-          <TodoListItem todo={todo} key={i} />
-        ))}
-      </List>
+      <NewTodoForm />
+      {todos.length > 0 ? (
+        <List>
+          {todos.map((todo, i) => (
+            <TodoListItem todo={todo} key={todo.text} />
+          ))}
+        </List>
+      ) : (
+        <EmptyMessage>No to-dos</EmptyMessage>
+      )}
     </Container>
   );
 };

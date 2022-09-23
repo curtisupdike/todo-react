@@ -21,7 +21,7 @@ const Title = styled.h1`
 
 const App = () => (
   <Container>
-    <Title>To-do List</Title>
+    <Title>To-Do List</Title>
     <TodoList />
   </Container>
 );
